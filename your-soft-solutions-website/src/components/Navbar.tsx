@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export default function Navbar() {
     return (
-        <nav className="m-10 flex text-xl">
+        <nav className="px-10 py-5 flex text-xl bg-[#ffffff70]">
             <Image src="/logo.png" alt="Your Soft Solutions, LLC" width={75} height={75} />
             <a className="mr-auto ml-2 self-center" href="#">Your Soft Solutions, LLC</a>
             <ul className="flex flex-row">
