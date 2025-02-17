@@ -16,7 +16,7 @@ export default function Contact() {
         const values = Object.fromEntries(new FormData(form).entries());
 
         setLoading(true);
-        setSuccess('');
+        setSuccess('Sending...');
 
         try {
             await fetch('/api/contact', {
@@ -27,11 +27,11 @@ export default function Contact() {
                 if (res.ok) {
                     setSuccess('Message sent!');
                     form.reset();
-                    return res.json();
                 } else {
                     setSuccess('Error sending message');
                 }
                 setLoading(false);
+                return res.json();
             });
         } catch (error) {
             setSuccess('Error sending message');
@@ -46,9 +46,10 @@ export default function Contact() {
                 <h1 className="text-4xl font-bold p-3">Contact Us</h1>
                 <p className="text-2xl p-5">Please fill out the form below and we will get back to you as soon as possible.</p>
                 <form className="flex flex-col items-center justify-center w-3/4 md:w-1/2" onSubmit={onSubmit}>
-                    <label className="text-red-500">{success}</label>
-                    <label className="text-red-500">{loading && 'Sending...'}</label>
-                    <input type="text" placeholder="Name" name="name" required className="p-2 m-2 w-full max-w-96 rounded-md bg-white/80" />                    <input type="email" placeholder="Email" name="email" required className="p-2 m-2 w-full max-w-96 rounded-md bg-white/80" />                    <textarea placeholder="Message" name="message" required className="p-2 m-2 max-w-96 w-full h-40 rounded-md bg-white/80" />
+                    <label className="text-black text-2xl p-5">{success}</label>
+                    <input type="text" placeholder="Name" name="name" required className="p-2 m-2 w-full max-w-96 rounded-md bg-white/80" />                    
+                    <input type="email" placeholder="Email" name="email" required className="p-2 m-2 w-full max-w-96 rounded-md bg-white/80" />                    
+                    <textarea placeholder="Message" name="message" required className="p-2 m-2 max-w-96 w-full h-40 rounded-md bg-white/80" />
                     <button className="rounded-full bg-white/70 px-5 py-3 m-5 text-black" type="submit">Submit</button>
                 </form>
             </div>
