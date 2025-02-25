@@ -1,7 +1,6 @@
-import { rejects } from "assert";
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from 'nodemailer';
-import Mail from 'nodemailer/lib/mailer'
+import nodemailer, { TransportOptions } from 'nodemailer';
+import Mail from 'nodemailer/lib/mailer';
 
 export async function POST(req: NextRequest) {
     const { email, name, message } = await req.json()
@@ -27,8 +26,7 @@ export async function POST(req: NextRequest) {
         <p style="text-align: center;"><span style="font-family: georgia, palatino, serif; font-size: 11pt;"><a href="http://www.yoursoftsolutions.com" rel="noopener noreferrer">www.yoursoftsolutions.com</a></span></p>
         </div>
     `
-
-    const transport = nodemailer.createTransport({
+    const transport = nodemailer.createTransport(<TransportOptions>{
         host: "smtp.hostinger.com",
         port: 465,
         secure: 'true',
